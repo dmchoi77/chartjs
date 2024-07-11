@@ -1,5 +1,5 @@
 import { ChartData, ChartOptions } from 'chart.js';
-import { RenderChart } from './RenderChart';
+import { RenderChart } from '../RenderChart';
 
 interface LineChartProps {
   width?: string;
