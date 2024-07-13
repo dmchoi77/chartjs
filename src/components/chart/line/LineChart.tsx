@@ -2,8 +2,8 @@ import { ChartData, ChartOptions } from 'chart.js';
 import { RenderChart } from '../RenderChart';
 
 interface LineChartProps {
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
   data: ChartData;
   options?: ChartOptions;
 }

@@ -1,8 +1,17 @@
-import { Chart, CategoryScale, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';
+import {
+  Chart,
+  CategoryScale,
+  LinearScale,
+  LineController,
+  LineElement,
+  PointElement,
+  Tooltip,
+  Filler,
+} from 'chart.js';
 import { useEffect, useRef } from 'react';
 import { ChartProps } from '../../types/chart';
 
-Chart.register([LineController, CategoryScale, LinearScale, PointElement, LineElement, Tooltip]);
+Chart.register([LineController, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler]);
 
 export const RenderChart = (props: ChartProps) => {
   const { width, height, ...rest } = props;
@@ -30,7 +39,13 @@ export const RenderChart = (props: ChartProps) => {
   }, []);
 
   return (
-    <div id='chart-wrapper' style={{ width, height }}>
+    <div
+      id='chart-wrapper'
+      style={{
+        width: `${width}px`,
+        height: `${height}px`,
+      }}
+    >
       <canvas id='chart-content' ref={canvasRef} />
     </div>
   );
