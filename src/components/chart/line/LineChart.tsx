@@ -1,13 +1,4 @@
-import { ChartData, ChartOptions } from 'chart.js';
 import { RenderChart } from '../RenderChart';
+import { ChartProps } from '../../../types/chart';
 
-interface LineChartProps {
-  width?: number;
-  height?: number;
-  data: ChartData;
-  options?: ChartOptions;
-}
-
-export const LineChart = ({ data, height, width, options = {} }: LineChartProps) => (
-  <RenderChart width={width} height={height} data={data} type='line' options={options} />
-);
+export const LineChart = (props: ChartProps) => <RenderChart {...props} type='line' />;
