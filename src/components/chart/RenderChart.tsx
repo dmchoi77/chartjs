@@ -7,11 +7,23 @@ import {
   PointElement,
   Tooltip,
   Filler,
+  RadarController,
+  RadialLinearScale,
 } from 'chart.js';
 import { useEffect, useRef } from 'react';
 import { ChartProps } from '../../types/chart';
 
-Chart.register([LineController, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler]);
+Chart.register([
+  LineController,
+  CategoryScale,
+  LinearScale,
+  RadialLinearScale,
+  RadarController,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Filler,
+]);
 
 export const RenderChart = (props: ChartProps) => {
   const { width, height, ...rest } = props;
