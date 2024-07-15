@@ -1,8 +1,10 @@
+import { lazy } from 'react';
 import { Meta, StoryFn } from '@storybook/react/*';
-import { LineChart } from './LineChart';
+
+const LineChart = lazy(() => import('./LineChart').then(({ LineChart }) => ({ default: LineChart })));
 
 const meta: Meta<typeof LineChart> = {
-  title: 'LineChart',
+  title: 'LazyLineChart',
   component: LineChart,
   args: {
     width: 800,

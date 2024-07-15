@@ -1,5 +1,7 @@
+import { lazy } from 'react';
 import { Meta, StoryFn } from '@storybook/react/*';
-import { RadarChart } from './RadarChart';
+
+const RadarChart = lazy(() => import('./RadarChart').then(({ RadarChart }) => ({ default: RadarChart })));
 
 const meta: Meta<typeof RadarChart> = {
   title: 'RadarChart',
