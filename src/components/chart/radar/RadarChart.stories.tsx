@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react/*';
 
 const RadarChart = lazy(() => import('./RadarChart').then(({ RadarChart }) => ({ default: RadarChart })));
@@ -7,8 +7,8 @@ const meta: Meta<typeof RadarChart> = {
   title: 'RadarChart',
   component: RadarChart,
   args: {
-    width: 800,
-    height: 800,
+    width: 560,
+    height: 560,
     data: {
       labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
       datasets: [
@@ -41,4 +41,26 @@ const meta: Meta<typeof RadarChart> = {
 
 export default meta;
 
-export const Default: StoryFn<typeof RadarChart> = (args) => <RadarChart {...args} />;
+export const Default: StoryFn<typeof RadarChart> = (args) => {
+  const [data, setData] = useState(args.data);
+
+  const onClickUpdate = () =>
+    setData((prev) => {
+      const updatedDatasets = prev.datasets.map((dataset) => ({
+        ...dataset,
+        data: dataset.data.map(() => Math.floor(Math.random() * 30)),
+      }));
+
+      return {
+        ...prev,
+        datasets: updatedDatasets,
+      };
+    });
+
+  return (
+    <div>
+      <RadarChart {...args} data={data} />
+      <button onClick={onClickUpdate}>Update</button>
+    </div>
+  );
+};

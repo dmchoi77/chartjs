@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react/*';
 
 const LineChart = lazy(() => import('./LineChart').then(({ LineChart }) => ({ default: LineChart })));
@@ -32,4 +32,26 @@ const meta: Meta<typeof LineChart> = {
 
 export default meta;
 
-export const Default: StoryFn<typeof LineChart> = (args) => <LineChart {...args} />;
+export const Default: StoryFn<typeof LineChart> = (args) => {
+  const [data, setData] = useState(args.data);
+
+  const onClickUpdate = () =>
+    setData((prev) => {
+      const updatedDatasets = prev.datasets.map((dataset) => ({
+        ...dataset,
+        data: dataset.data.map(() => Math.floor(Math.random() * 100)),
+      }));
+
+      return {
+        ...prev,
+        datasets: updatedDatasets,
+      };
+    });
+
+  return (
+    <div>
+      <LineChart {...args} data={data} />
+      <button onClick={onClickUpdate}>Update</button>
+    </div>
+  );
+};
