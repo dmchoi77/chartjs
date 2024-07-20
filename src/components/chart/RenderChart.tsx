@@ -48,7 +48,7 @@ export const RenderChart = (props: ChartProps) => {
     renderChart();
 
     return () => destroyChart();
-  }, []);
+  }, [rest]);
 
   return (
     <div
